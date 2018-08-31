@@ -42,7 +42,7 @@
 <p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
 <form method="post" action="serveradd.php">
 <a href="add.php">Add Subjects</a>
-<a href="update.php">Edit Subjects</a>
+<a href="edit.php">Edit Subjects</a>
 <a href="delete.php">Delete Subjects</a>
 <a href="upload.php">Upload Image</a>
 

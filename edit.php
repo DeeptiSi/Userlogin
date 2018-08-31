@@ -3,18 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CRUD: CReate</title>
+	<title>CRUD: Update</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 
 </head>
 <body>
 	<form method="post" action="php_code.php" >
 		<div class="input-group">
-			<label>Subject Name</label>
+			<label>Subject ID</label>
 			<input type="text" name="name" value="">
+		<label>Subject Name</label>
+			<input type="text" name="sname" value="">
+	
 		</div>
 			<div class="input-group">
-			<button class="btn" type="submit" name="save" >Save</button>
+			<button class="btn" type="submit" name="edit" >Edit</button>
 		</div>
 	</form>
 <?php if (isset($_SESSION['message'])): ?>

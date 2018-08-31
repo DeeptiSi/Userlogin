@@ -73,32 +73,19 @@ if (isset($_POST['login_user'])) {
   	$password = md5($password);
   	$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
   	$results = mysqli_query($db, $query);
-  	if (mysqli_num_rows($results) == 1) {
+  	if (mysqli_num_rows($results) == 1) 
+	{
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: index.php');
-	// $un=$_SESSION['username'];
-	//echo $un;
-	$usid=mysqli_query($db,"select id from users where username='$username'");	
-	$name = "";
-
-	$id = 0;
-	$update = false;
-
-	if (isset($_POST['save'])) {
-		$name = $_POST['name'];
-		echo $usid;
-		mysqli_query($db, "INSERT INTO subjects (sname,login_id) VALUES ('$name',$usid)"); 
-		$_SESSION['message'] = "Data saved"; 
-		header('location: index.php');
 	}
 
 
   	}else {
-  		array_push($errors, "Wrong username/password combination");
+  		array_push($errors, 	"Wrong username/password combination");
   	}
   }
 
 
-	}
+	
 ?>

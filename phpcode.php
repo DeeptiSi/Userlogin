@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	$db = mysqli_connect('localhost', 'root', '', 'crud');
+	$db = mysqli_connect('localhost', 'root', '', 'registration');
 
 	// initialize variables
 	$name = "";

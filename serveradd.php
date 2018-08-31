@@ -1,11 +1,5 @@
-<?php session_start(); ?>
- 
-<?php
-if(!isset($_SESSION['valid'])) {
-    header('Location: index.php');
-}
-?>
- 
+<?php  include('php_code.php'); ?>
+
 <html>
 <head>
     <title>Add Data</title>
@@ -13,49 +7,31 @@ if(!isset($_SESSION['valid'])) {
  
 <body>
 <?php
-//including the database connection file
-$db = mysqli_connect('localhost', 'root', '','registration');
- 
+$un=''; 
 if(isset($_POST['save'])) {    
     $name = $_POST['name'];
-    $loginId = $_SESSION['id'];
-        
+    echo $name;        
     // checking empty fields
-    if(empty($name)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
+         
+        if(empty($name)) {
+            echo "<font color='red'>Subject Name field is empty.</font><br/>";
         }
-        
-      else { 
-        // if all the fields are filled (not empty) 
-            echo $loginId;
-        //insert data to database    
-        $result = mysqli_query($mysqli, "INSERT INTO subjects(name,login_id) VALUES('$name',$loginId)");
-        
+        else 
+	{ 
+        // if all the fields are filled (not empty)             	$un=$_SESSION['username'];
+	echo $un;        
+//insert data to database
+	$usid=mysqli_query($db,"select * from users where username='$un'");	
+	$sid=mysqli_fetch_array($usid);
+	$uid=$sid[0];		
+	echo $uid;
+	mysqli_query($db, "INSERT INTO subjects (sname,login_id) VALUES ('$name','$uid')"); 
+	$_SESSION['message'] = "Data saved"; 
+//	header('location: index.php');
         //display success message
         echo "<font color='green'>Data added successfully.";
-        echo "<br/><a href='view.php'>View Result</a>";
     }
 }
-	$usid=mysqli_query($db,"select id from users where username='$username'");	
-	$name = "";
-
-	$id = 0;
-	$update = false;
-
-	if (isset($_POST['save'])) {
-		$name = $_POST['name'];
-		echo $usid;
-		mysqli_query($db, "INSERT INTO subjects (sname,login_id) VALUES ('$name',$usid)"); 
-		$_SESSION['message'] = "Data saved"; 
-		header('location: index.php');
-	}
-	else {
-  		array_push($errors, "Wrong username/password combination");
-  	}
-  
-
-
-	
 ?>
 </body>
 </html>
